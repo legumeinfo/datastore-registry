@@ -1,5 +1,5 @@
 # datastore-registry
-Track the four-digit unique "KEY4" key used in Data Store collections - and the associated directoyr path information: Genus, species, datatype, accession.typeVer
+Track the four-digit unique "KEY4" key used in Data Store collections - and the associated directory path information: Genus, species, datatype, accession.typeVer
 
 For example:
 ```
