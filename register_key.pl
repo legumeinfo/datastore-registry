@@ -10,16 +10,16 @@ my $message_value = "";
 my $too_many_tries = 10000;
 
 my $usage = <<EOS;
-  Synopsis: add_key_and_value.pl -r registry.tsv [options]
+  Synopsis: register_key.pl -r ds_registry.tsv [options]
 
   Reads a tab-delimited file with keys and values and adds another key and value.
 
   Examples:
   Just return a key:
-    add_key_and_value.pl -r registry.tsv -stdout
+    register_key.pl -r ds_registry.tsv -stdout
 
   Add a key and values to the registry file:
-    add_key_and_value.pl -r registry.tsv -m "Canis lupus genome Spot.gnm1"
+    register_key.pl -r ds_registry.tsv -m "Canis lupus genome Spot.gnm1"
   
 
   Required: 
