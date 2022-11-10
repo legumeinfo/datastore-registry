@@ -21,6 +21,11 @@ This will generate (for example; the key will be unique for each run):
 
 If the previous command is issued without "-stdout", then the record will be added to the registry.tsv file.
 
+The script can also be provided with a key (for example, if a curator has already been working on a collection and has provisionally assigned a key):
+```
+  ./add_key_and_value.pl -r registry.tsv -m "Tyranosarus rex annotation King.gnm1.ann1" -k WXYZ
+```
+
 Once satisfied with the results, then push to the remote (origin) repository.
 
 
