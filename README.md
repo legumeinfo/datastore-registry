@@ -10,10 +10,14 @@ For example:
 ```
 
 Typical usage:
-    `./add_key_and_value.pl -r registry.tsv -m "Pisum sativum genomes	Cameor.gnm1" -stdout`
+```
+    ./add_key_and_value.pl -r registry.tsv -m "Pisum sativum genomes	Cameor.gnm1" -stdout
+```
     
 This will generate (for example; the key will be unique for each run):
-    `C6BT	Pisum	sativum	genomes	Cameor.gnm1`
+```
+    C6BT	Pisum	sativum	genomes	Cameor.gnm1
+```
 
 If the previous command is issued without "-stdout", then the record will be added to the registry.tsv file.
 
