@@ -3,7 +3,8 @@ use strict;
 use warnings;
 use Getopt::Long;
 
-my ($help, $registry, $stdout, $vowels, $user_key);
+my ($help, $stdout, $vowels, $user_key);
+my $registry = "ds_registry.tsv";
 my $width=4;
 my $count=1; # How many IDs to generate
 my $message_value = "";
@@ -16,25 +17,26 @@ my $usage = <<EOS;
 
   Examples:
   Just return a key:
-    register_key.pl -r ds_registry.tsv -stdout
+    register_key.pl -stdout
 
   Add a key and values to the registry file:
-    register_key.pl -r ds_registry.tsv -m "Canis lupus genome Spot.gnm1"
+    register_key.pl -m "Canis lupus genome Spot.gnm1"
+
+  Add a user-provided key and values to the registry file:
+    register_key.pl -k XXXX -m "Canis lupus genome Spot.gnm1"
   
-
-  Required: 
-    -registry   File with keys and values (values may have one or more column). Key is in first column.
-
   Options:
-    -value      Value to add to the registry, opposite new key. If omitted, only the key will be generated.
-    -message    Same as "-value", reminiscent of git commit -m. 
-    -key        Use the four-character key provided (if it is not in the registry).
-    -stdout     Print to STDOUT rather than to the registry file.
+    -registry   String. File with keys and values (values may have one or more column). Key is in first column.
+                Default: ds_registry.tsv
+    -value      String. Value to add to the registry, opposite new key. If omitted, only the key will be generated.
+    -message    String. Same as "-value", reminiscent of git commit -m. 
+    -key        String. Use the four-character key provided (if it is not in the registry).
+    -stdout     Boolean. Print to STDOUT rather than to the registry file.
     -help       Boolean. This message. 
 EOS
 
 GetOptions (
-  "registry=s" =>  \$registry,
+  "registry:s" =>  \$registry,
   "value:s" =>     \$message_value,
   "message:s" =>   \$message_value,
   "key:s" =>       \$user_key,
@@ -42,13 +44,13 @@ GetOptions (
   "help" =>        \$help,
 );
 
-die "\n$usage\n" if ( $help );
-die "\n$usage\nPlease provide a registry file: -registry FILENAME\n\n" unless ( $registry );
+die "\n$usage\n" if ( $help || (!$message_value && !$user_key && !$stdout) );
+die "\n$usage\nPlease provide a registry file: -registry FILENAME\n\n" unless ( -f $registry );
 if ($user_key){
   die "\n$usage\nUser-provided key must have four characters\n\n" unless ( length($user_key) == 4 );
 }
 
-my @s; # hash with characters to use in random ID strings
+my @s; # array of characters to use in random ID strings
 
 my @cons =   qw(B C D F G H J K L M N P Q R S T V W X Y Z);
 my @vowels = qw(A E I O U); # Not used unless global $vowels is set to 1
