@@ -20,16 +20,22 @@ my $usage = <<EOS;
     register_key.pl -stdout
 
   Add a key and values to the registry file:
-    register_key.pl -m "Canis lupus genome Spot.gnm1"
+    register_key.pl -m "Canis lupus genomes Spot.gnm1"
 
   Add a user-provided key and values to the registry file:
-    register_key.pl -k XXXX -m "Canis lupus genome Spot.gnm1"
+    register_key.pl -k XXXX -m "Canis lupus genomes Spot.gnm1"
   
   Options:
     -registry   String. File with keys and values (values may have one or more column). Key is in first column.
                 Default: ds_registry.tsv
     -value      String. Value to add to the registry, opposite new key. If omitted, only the key will be generated.
     -message    String. Same as "-value", reminiscent of git commit -m. 
+                  The message/value (-m or -v) should have four components, space-separated: 
+                   "Genus species type accession.type"   -- for example
+                    Cicer arietinum genomes CDCFrontier.gnm3
+                  The third field should be one of the following types:
+                    annotations genefamilies genomes maps markers methylation pangenes pangenomes 
+                    repeats supplements synteny traits transcriptomes
     -key        String. Use the four-character key provided (if it is not in the registry).
     -stdout     Boolean. Print to STDOUT rather than to the registry file.
     -help       Boolean. This message. 
@@ -77,7 +83,21 @@ while (<$IN>){
 close $IN;
 
 my $message_tsv = $message_value;
-$message_tsv =~ s/\s+/\t/g;
+$message_tsv =~ s/,*\s+/\t/g; # Replace spaces or comma+spaces with tabs
+my @parts = split(/\t/, $message_tsv);
+unless (scalar(@parts) == 4){
+  warn "\nNOTE: The message/value (-m or -v) should have four components, space-separated: \n" .
+       "  Genus species type accession.type# -- for example,\n" .
+       "  Cicer arietinum genomes CDCFrontier.gnm3\n" .
+       "Please check if the message/value string is as you intend.\n\n";
+}
+unless ($parts[2] =~ m/annotations|genefamilies|genomes|maps|markers|methylation|pangenes|pangenomes|repeats|supplements|synteny|traits|transcriptomes/){
+  warn "\nNOTE: The third component of the message/value (-m or -v) should be one of the following: \n" .
+       "  annotations genefamilies genomes maps markers methylation pangenes \n" .
+       "  pangenomes repeats supplements synteny traits transcriptomes\n" .
+       "(Note plurals in e.g. \"annotations\" and \"genomes\")\n" .
+       "Please check if the message/value string is as you intend.\n\n";
+}
 
 my $OUT;
 unless ($stdout){
