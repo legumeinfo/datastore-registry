@@ -28,14 +28,14 @@ The script can also be provided with a key (for example, if a curator has alread
 
 The message/value (-m or -v) should have four components, space-separated:
 ```
- "Genus species type accession.type"   -- for example
-  Cicer arietinum genomes CDCFrontier.gnm3
+  "Genus species type accession.type"   -- for example,
+  "Cicer arietinum genomes CDCFrontier.gnm3"
 ```
 
-The third field should be one of the following types:
+The third field should be one of the following types (notice the plurals, e.g. "annotations"):
 ```
-  annotations genefamilies genomes maps markers methylation pangenes pangenomes
-  repeats supplements synteny traits transcriptomes
+  annotations genefamilies genomes maps markers methylation 
+  pangenes pangenomes repeats supplements synteny traits transcriptomes
 ```
 
 Once satisfied with the results, then push to the remote (origin) repository.
