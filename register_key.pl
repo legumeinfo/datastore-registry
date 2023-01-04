@@ -21,6 +21,7 @@ my $usage = <<EOS;
 
   Add a key and values to the registry file:
     register_key.pl -m "Canis lupus genomes Spot.gnm1"
+    register_key.pl -m "Vigna GENUS pangenes mixed.pan1"
 
   Add a user-provided key and values to the registry file:
     register_key.pl -k XXXX -m "Canis lupus genomes Spot.gnm1"
