@@ -325,11 +325,11 @@ PDXG	Glycine	max	annotations	HeiHeNo_43.gnm1.ann1
 2YX4	Glycine	max	annotations	KeShanNo_1.gnm1.ann1
 17QQ	Bauhinia	variegata	genomes	Zhou.gnm2
 RJ1G	Bauhinia	variegata	annotations	Zhou.gnm2.ann1
-X2PC	Vigna	GENUS	pangenes	mixed.pan1
-P3ZQ	Phaseolus	GENUS	pangenes	mixed.pan1
-YWTW	Glycine	GENUS	pangenes	mixed.pan3
-XXQ6	Medicago	GENUS	pangenes	mixed.pan1
-SV8C	Cicer	GENUS	pangenes	mixed.pan1
+X2PC	Vigna	GENUS	pangenes	Vigna.pan2
+P3ZQ	Phaseolus	GENUS	pangenes	Phaseolus.pan1
+YWTW	Glycine	GENUS	pangenes	Glycine.pan3
+XXQ6	Medicago	GENUS	pangenes	Medicago.pan1
+SV8C	Cicer	GENUS	pangenes	Cicer.pan1
 1JTF	Arachis	hypogaea	genomes	BaileyII.gnm1
 PQM7	Arachis	hypogaea	annotations	BaileyII.gnm1.ann1
 TN8K	Arachis	hypogaea	annotations	Tifrunner.gnm2.ann2
