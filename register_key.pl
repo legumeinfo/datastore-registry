@@ -7,7 +7,8 @@ my ($help, $stdout, $vowels, $user_key);
 my $registry = "ds_registry.tsv";
 my $width=4;
 my $count=1; # How many IDs to generate
-my $message_value = "";
+my $value = "";
+my $message = "";
 my $too_many_tries = 10000;
 
 my $usage = <<EOS;
@@ -20,38 +21,39 @@ my $usage = <<EOS;
     register_key.pl -stdout
 
   Add a key and values to the registry file:
-    register_key.pl -m "Canis lupus genomes Spot.gnm1"
-    register_key.pl -m "Vigna GENUS pangenes mixed.pan1"
+    register_key.pl -v "Canis lupus genomes Spot.gnm1"
+    register_key.pl -v "Vigna GENUS pangenes mixed.pan1"
 
   Add a user-provided key and values to the registry file:
-    register_key.pl -k XXXX -m "Canis lupus genomes Spot.gnm1"
+    register_key.pl -k XXXX -v "Canis lupus genomes Spot.gnm1"
   
   Options:
     -registry   String. File with keys and values (values may have one or more column). Key is in first column.
                 Default: ds_registry.tsv
-    -value      String. Value to add to the registry, opposite new key. If omitted, only the key will be generated.
-    -message    String. Same as "-value", reminiscent of git commit -m. 
-                  The message/value (-m or -v) should have four components, space-separated: 
+    -value      String. The value (-v) should have four components, space-separated: 
                    "Genus species type accession.type"   -- for example
                     Cicer arietinum genomes CDCFrontier.gnm3
                   The third field should be one of the following types:
                     annotations genefamilies genomes maps markers methylation pangenes pangenomes 
                     repeats supplements synteny traits transcriptomes
     -key        String. Use the four-character key provided (if it is not in the registry).
+    -message    String. Optional comment; reminiscent of the github -m commit message.
     -stdout     Boolean. Print to STDOUT rather than to the registry file.
     -help       Boolean. This message. 
 EOS
 
 GetOptions (
   "registry:s" =>  \$registry,
-  "value:s" =>     \$message_value,
-  "message:s" =>   \$message_value,
   "key:s" =>       \$user_key,
+  "value:s" =>     \$value,
+  "message:s" =>   \$message,
   "stdout" =>      \$stdout,
   "help" =>        \$help,
 );
 
-die "\n$usage\n" if ( $help || (!$message_value && !$user_key && !$stdout) );
+print "message: $message\n";
+
+die "\n$usage\n" if ( $help || (!$value && !$user_key && !$stdout) );
 die "\n$usage\nPlease provide a registry file: -registry FILENAME\n\n" unless ( -f $registry );
 if ($user_key){
   die "\n$usage\nUser-provided key must have four characters\n\n" unless ( length($user_key) == 4 );
@@ -83,21 +85,21 @@ while (<$IN>){
 }
 close $IN;
 
-my $message_tsv = $message_value;
-$message_tsv =~ s/,*\s+/\t/g; # Replace spaces or comma+spaces with tabs
-my @parts = split(/\t/, $message_tsv);
+my $value_tsv = $value;
+$value_tsv =~ s/,*\s+/\t/g; # Replace spaces or comma+spaces with tabs
+my @parts = split(/\t/, $value_tsv);
 unless (scalar(@parts) == 4){
-  warn "\nNOTE: The message/value (-m or -v) should have four components, space-separated: \n" .
+  warn "\nNOTE: The value (-v) should have four components, space-separated: \n" .
        "  Genus species type accession.type# -- for example,\n" .
        "  Cicer arietinum genomes CDCFrontier.gnm3\n" .
-       "Please check if the message/value string is as you intend.\n\n";
+       "Please check if the value string is as you intend.\n\n";
 }
 unless ($parts[2] =~ m/annotations|genefamilies|genomes|maps|markers|methylation|pangenes|pangenomes|repeats|supplements|synteny|traits|transcriptomes/){
-  warn "\nNOTE: The third component of the message/value (-m or -v) should be one of the following: \n" .
+  warn "\nNOTE: The third component of the value (-v) should be one of the following: \n" .
        "  annotations genefamilies genomes maps markers methylation pangenes \n" .
        "  pangenomes repeats supplements synteny traits transcriptomes\n" .
        "(Note plurals in e.g. \"annotations\" and \"genomes\")\n" .
-       "Please check if the message/value string is as you intend.\n\n";
+       "Please check if the value string is as you intend.\n\n";
 }
 
 my $OUT;
@@ -138,13 +140,25 @@ else { # Make a new key
 }
 
 if ( $stdout ) { # print to STDOUT
-  if ( $message_tsv ){ print "$new_ID\t$message_tsv\n" }
+  if ( $value_tsv ){ 
+    if ($message){
+      print "$new_ID\t$value_tsv\t$message\n";
+    }
+    else {
+      print "$new_ID\t$value_tsv\n"; 
+    }
+  }
   else {print "$new_ID\n" }
 } 
 else { # print to registry
-  if ( $message_tsv ){ 
-    print $OUT "$new_ID\t$message_tsv\n";
-    print "Printed to registry: $new_ID\t$message_tsv\n";
+  if ( $value_tsv ){ 
+    if ($message){
+      print $OUT "$new_ID\t$value_tsv\t$message\n";
+      print "Printed to registry: $new_ID\t$value_tsv\t$message\n";
+    }
+    else {
+      print "$new_ID\t$value_tsv\n";
+    }
   }
   else { 
     print $OUT "$new_ID\t\n";
