@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use Getopt::Long;
+use feature "say";
 
 my ($help, $stdout, $vowels, $user_key);
 my $registry = "ds_registry.tsv";
@@ -51,8 +52,6 @@ GetOptions (
   "help" =>        \$help,
 );
 
-print "message: $message\n";
-
 die "\n$usage\n" if ( $help || (!$value && !$user_key && !$stdout) );
 die "\n$usage\nPlease provide a registry file: -registry FILENAME\n\n" unless ( -f $registry );
 if ($user_key){
@@ -88,18 +87,22 @@ close $IN;
 my $value_tsv = $value;
 $value_tsv =~ s/,*\s+/\t/g; # Replace spaces or comma+spaces with tabs
 my @parts = split(/\t/, $value_tsv);
-unless (scalar(@parts) == 4){
-  warn "\nNOTE: The value (-v) should have four components, space-separated: \n" .
-       "  Genus species type accession.type# -- for example,\n" .
-       "  Cicer arietinum genomes CDCFrontier.gnm3\n" .
-       "Please check if the value string is as you intend.\n\n";
-}
-unless ($parts[2] =~ m/annotations|genefamilies|genomes|maps|markers|methylation|pangenes|pangenomes|repeats|supplements|synteny|traits|transcriptomes/){
-  warn "\nNOTE: The third component of the value (-v) should be one of the following: \n" .
-       "  annotations genefamilies genomes maps markers methylation pangenes \n" .
-       "  pangenomes repeats supplements synteny traits transcriptomes\n" .
-       "(Note plurals in e.g. \"annotations\" and \"genomes\")\n" .
-       "Please check if the value string is as you intend.\n\n";
+unless ($stdout){
+  unless (scalar(@parts) == 4){
+    warn "\nNOTE: The value (-v) should have four components, space-separated: \n" .
+         "  Genus species type accession.type# -- for example,\n" .
+         "  Cicer arietinum genomes CDCFrontier.gnm3\n" .
+         "Please check if the value string is as you intend.\n\n";
+         die;
+  }
+  unless ($parts[2] =~ m/annotations|genefamilies|genomes|maps|markers|methylation|pangenes|pangenomes|repeats|supplements|synteny|traits|transcriptomes/){
+    warn "\nNOTE: The third component of the value (-v) should be one of the following: \n" .
+         "  annotations genefamilies genomes maps markers methylation pangenes \n" .
+         "  pangenomes repeats supplements synteny traits transcriptomes\n" .
+         "(Note plurals in e.g. \"annotations\" and \"genomes\")\n" .
+         "Please check if the value string is as you intend.\n\n";
+         die;
+  }
 }
 
 my $OUT;
@@ -142,28 +145,35 @@ else { # Make a new key
 if ( $stdout ) { # print to STDOUT
   if ( $value_tsv ){ 
     if ($message){
-      print "$new_ID\t$value_tsv\t$message\n";
+      say "$new_ID\t$value_tsv\t$message";
     }
     else {
-      print "$new_ID\t$value_tsv\n"; 
+      say "$new_ID\t$value_tsv"; 
     }
   }
-  else {print "$new_ID\n" }
+  else {say "$new_ID" }
 } 
 else { # print to registry
   if ( $value_tsv ){ 
     if ($message){
-      print $OUT "$new_ID\t$value_tsv\t$message\n";
-      print "Printed to registry: $new_ID\t$value_tsv\t$message\n";
+      say $OUT "$new_ID\t$value_tsv\t$message";
+      say "Printed to registry: $new_ID\t$value_tsv\t$message\n";
     }
     else {
-      print "$new_ID\t$value_tsv\n";
+      say $OUT "$new_ID\t$value_tsv";
+      say "Printed to registry: $new_ID\t$value_tsv\n";
     }
   }
   else { 
-    print $OUT "$new_ID\t\n";
-    print "Printed to registry: $new_ID\t... with no corresponding value.\n";
+    say $OUT "$new_ID\t\n";
+    say "Printed to registry: $new_ID\t... with no corresponding value.\n";
   }
 }
+
+__END__
+VERSIONS
+
+2022 S. Cannon. 
+2023-03-18 "Change option -stdout to simply generate a key (no other message). Change from print to say."
 
 
