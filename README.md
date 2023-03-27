@@ -34,7 +34,7 @@ The message/value (-m or -v) should have four components, space-separated:
 
 The third field should be one of the following types (notice the plurals, e.g. "annotations"):
 ```
-  annotations genefamilies genomes maps markers methylation 
+  annotations genefamilies genomes genome_alignments maps markers methylation 
   pangenes pangenomes repeats supplements synteny traits transcriptomes
 ```
 

@@ -35,8 +35,8 @@ my $usage = <<EOS;
                    "Genus species type accession.type"   -- for example
                     Cicer arietinum genomes CDCFrontier.gnm3
                   The third field should be one of the following types:
-                    annotations genefamilies genomes maps markers methylation pangenes pangenomes 
-                    repeats supplements synteny traits transcriptomes
+                    annotations genefamilies genomes genome_alignments maps markers methylation 
+                    pangenes pangenomes repeats supplements synteny traits transcriptomes
     -key        String. Use the four-character key provided (if it is not in the registry).
     -message    String. Optional comment; reminiscent of the github -m commit message.
     -stdout     Boolean. Print to STDOUT rather than to the registry file.
@@ -95,10 +95,11 @@ unless ($stdout){
          "Please check if the value string is as you intend.\n\n";
          die;
   }
-  unless ($parts[2] =~ m/annotations|genefamilies|genomes|maps|markers|methylation|pangenes|pangenomes|repeats|supplements|synteny|traits|transcriptomes/){
+  unless ($parts[2] =~ m/annotations|genefamilies|genomes|genome_alignments|maps|markers|methylation|
+                         pangenes|pangenomes|repeats|supplements|synteny|traits|transcriptomes/x ){
     warn "\nNOTE: The third component of the value (-v) should be one of the following: \n" .
-         "  annotations genefamilies genomes maps markers methylation pangenes \n" .
-         "  pangenomes repeats supplements synteny traits transcriptomes\n" .
+         "  annotations genefamilies genomes genome_alignments maps markers methylation \n" .
+         "  pangenes pangenomes repeats supplements synteny traits transcriptomes\n" .
          "(Note plurals in e.g. \"annotations\" and \"genomes\")\n" .
          "Please check if the value string is as you intend.\n\n";
          die;
@@ -174,6 +175,6 @@ __END__
 VERSIONS
 
 2022 S. Cannon. 
-2023-03-18 "Change option -stdout to simply generate a key (no other message). Change from print to say."
-
+2023-03-18 Change option -stdout to simply generate a key (no other message). Change from print to say.
+2023-03-27 Add genome_alignments as an allowed type.
 
