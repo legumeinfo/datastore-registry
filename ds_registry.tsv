@@ -335,3 +335,5 @@ PQM7	Arachis	hypogaea	annotations	BaileyII.gnm1.ann1
 PVFB	Arachis	hypogaea	annotations	Tifrunner.gnm2.ann2	ISU BIND annotation on gnm2
 TN8K	Arachis	hypogaea	annotations	Tifrunner.gnm1.ann2	GenBank RefSeq annotation, coming second to the consoritum annotation.
 4LN9	Arachis	GENUS	pangenes	Arachis.pan1
+3N1M	Cercis	canadensis	annotations	ISC453364.gnm3.ann1	for official Phytozome release
+GWXB	Cercis	canadensis	genomes	ISC453364.gnm3	for official Phytozome release
