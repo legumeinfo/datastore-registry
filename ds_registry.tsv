@@ -343,5 +343,7 @@ Y54X	Vicia	faba	annotations	Tiffany.gnm1.ann1
 PTNK	Vicia	faba	annotations	Hedin.gnm1.ann1
 8K16	Lablab	purpureus	genomes	Highworth.gnm1
 HJ3B	Lablab	purpureus	annotations	Highworth.gnm1.ann1
-G7XW	Chamaecrista	fasciculata	annotations	ISC494698.gnm1.ann1	for evaluation of annotations from JGI
-8Q19	Chamaecrista	fasciculata	genomes	ISC494698.gnm1	for evaluation of annotations from JGI
+G7XW	Chamaecrista	fasciculata	annotations	ISC494698.gnm1.ann1
+8Q19	Chamaecrista	fasciculata	genomes	ISC494698.gnm1
+WFKC	Sindora	glabra	annotations	CAF01.gnm1.ann1
+0JHK	Sindora	glabra	genomes	CAF01.gnm1
