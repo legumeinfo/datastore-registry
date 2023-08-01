@@ -26,7 +26,8 @@ The script can also be provided with a key (for example, if a curator has alread
   ./register_key.pl -k XXXX -m "Mus musclus annotations Minnie.gnm1.ann1" 
 ```
 
-The message/value (-m or -v) should have four components, space-separated:
+The message/value (-m or -v) should have four components, space-separated:  
+(-m only prints the message while -v is used to actually make changes to the registry file)  
 ```
   "Genus species type accession.type"   -- for example,
   "Cicer arietinum genomes CDCFrontier.gnm3"
