@@ -325,7 +325,7 @@ PDXG	Glycine	max	annotations	HeiHeNo_43.gnm1.ann1
 2YX4	Glycine	max	annotations	KeShanNo_1.gnm1.ann1
 17QQ	Bauhinia	variegata	genomes	Zhou.gnm2
 RJ1G	Bauhinia	variegata	annotations	Zhou.gnm2.ann1
-X2PC	Vigna	GENUS	pangenes	Vigna.pan2
+X2PC	Vigna	GENUS	pangenes	Vigna.pan1
 P3ZQ	Phaseolus	GENUS	pangenes	Phaseolus.pan1
 YWTW	Glycine	GENUS	pangenes	Glycine.pan3
 XXQ6	Medicago	GENUS	pangenes	Medicago.pan1
@@ -381,3 +381,9 @@ PYJ1	Phaseolus	coccineus	genomes	PHA8298.gnm1
 0Q14	Phaseolus	coccineus	annotations	PHA8298.gnm1.ann1
 YX4L	Accacia	crassicarpa	genomes	Acra3RX.gmn1
 6C0V	Accacia	crassicarpa	annotations	Acra3RX.gmn1.ann1
+BYQ9	Arachis	GENUS	pangenes	Arachis.pan3
+JVTK	Cicer	GENUS	pangenes	Cicer.pan3
+MKRS	Glycine	GENUS	pangenes	Glycine.pan5
+9X6B	Medicago	GENUS	pangenes	Medicago.pan3
+LXKV	Phaseolus	GENUS	pangenes	Phaseolus.pan3
+V294	Vigna	GENUS	pangenes	Vigna.pan3
