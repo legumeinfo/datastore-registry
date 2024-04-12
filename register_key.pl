@@ -23,7 +23,8 @@ my $usage = <<EOS;
 
   Add a key and values to the registry file:
     register_key.pl -v "Canis lupus genomes Spot.gnm1"
-    register_key.pl -v "Vigna GENUS pangenes mixed.pan1"
+    register_key.pl -v "Vigna GENUS pangenes Vigna.pan1"
+    register_key.pl -v "LEGUMES Fabaceae genefamilies legume.fam3"
 
   Add a user-provided key and values to the registry file:
     register_key.pl -k XXXX -v "Canis lupus genomes Spot.gnm1"
@@ -96,10 +97,10 @@ unless ($stdout){
          die;
   }
   unless ($parts[2] =~ m/annotations|genefamilies|genomes|genome_alignments|maps|markers|methylation|
-                         pangenes|pangenomes|repeats|supplements|synteny|traits|transcriptomes/x ){
+                         pangenes|pangenomes|genefamilies|repeats|supplements|synteny|traits|transcriptomes/x ){
     warn "\nNOTE: The third component of the value (-v) should be one of the following: \n" .
          "  annotations genefamilies genomes genome_alignments maps markers methylation \n" .
-         "  pangenes pangenomes repeats supplements synteny traits transcriptomes\n" .
+         "  pangenes pangenomes genefamilies repeats supplements synteny traits transcriptomes\n" .
          "(Note plurals in e.g. \"annotations\" and \"genomes\")\n" .
          "Please check if the value string is as you intend.\n\n";
          die;
@@ -177,4 +178,4 @@ VERSIONS
 2022 S. Cannon. 
 2023-03-18 Change option -stdout to simply generate a key (no other message). Change from print to say.
 2023-03-27 Add genome_alignments as an allowed type.
-
+2024-04-12 Change usage message to include example for gene families collection
