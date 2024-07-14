@@ -335,8 +335,6 @@ PQM7	Arachis	hypogaea	annotations	BaileyII.gnm1.ann1
 PVFB	Arachis	hypogaea	annotations	Tifrunner.gnm2.ann2	ISU BIND annotation on gnm2
 TN8K	Arachis	hypogaea	annotations	Tifrunner.gnm1.ann2	GenBank RefSeq annotation, coming second to the consoritum annotation.
 4LN9	Arachis	GENUS	pangenes	Arachis.pan1
-3N1M	Cercis	canadensis	annotations	ISC453364.gnm3.ann1	for official Phytozome release
-GWXB	Cercis	canadensis	genomes	ISC453364.gnm3	for official Phytozome release
 M2F3	Vicia	faba	genomes	Tiffany.gnm1
 Y54X	Vicia	faba	annotations	Tiffany.gnm1.ann1
 06GS	Vicia	faba	genomes	Hedin.gnm1
@@ -401,3 +399,7 @@ JRRZ	Psophocarpus	tetragonolobus	annotations	Ma3.gnm1.ann1
 VLMQ	LEGUMES	Fabaceae	genefamilies	legume.fam3
 G6BY	Chamaecrista	fasciculata	genomes	chafa.ISC494698.gnm1_hap2
 WXZF	Chamaecrista	fasciculata	annotations	chafa.ISC494698.gnm1_hap2.ann1
+3N1M	Cercis	canadensis	annotations	ISC453364.gnm3.ann1	for official Phytozome release
+GWXB	Cercis	canadensis	genomes	ISC453364.gnm3	for official Phytozome release
+2S7P	Cercis	canadensis	genomes	ISC453364.gnm3_hap2	for official Phytozome release; haplotype 2
+G88H	Cercis	canadensis	annotations	ISC453364.gnm3_hap2.ann1	for official Phytozome release; haplotype 2
