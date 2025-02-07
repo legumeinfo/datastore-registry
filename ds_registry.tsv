@@ -442,7 +442,11 @@ MF2C	Glycine	max	genomes	Enrei.gnm3
 YRG3	Glycine	max	annotations	Enrei.gnm3.ann1
 9GPW	Glycine	max	genomes	Kosuzu.gnm3
 4MVB	Glycine	max	annotations	Kosuzu.gnm3.ann1
-KVMK	Apios	americana	genomes	LA2127
-QKWH	Apios	americana	annotations	LA2127
-814V	Apios	priceana	genomes	MoBot19963523
-P2VZ	Apios	priceana	annotations	MoBot19963523
+KVMK	Apios	americana	genomes	LA2127.gnm1
+QKWH	Apios	americana	annotations	LA2127.gnm1.ann1
+3WWC	Apios	americana	genomes	LA2127.gnm1_hap2
+NT2R	Apios	americana	annotations	LA2127.gnm1_hap2.ann1
+814V	Apios	priceana	genomes	MoBot19963523.gnm1
+P2VZ	Apios	priceana	annotations	MoBot19963523.gnm1.ann1
+GPZQ	Apios	priceana	genomes	MoBot19963523.gnm1_hap2
+PB8C	Apios	priceana	annotations	MoBot19963523.gnm1_hap2.ann1
