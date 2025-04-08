@@ -53,7 +53,7 @@ GetOptions (
   "help" =>        \$help,
 );
 
-die "\n$usage\n" if ( $help || (!$value && !$user_key && !$stdout) );
+die "\n$usage\n" if ( $help || ((!$value && !$message) && !$user_key && !$stdout) );
 die "\n$usage\nPlease provide a registry file: -registry FILENAME\n\n" unless ( -f $registry );
 if ($user_key){
   die "\n$usage\nUser-provided key must have four characters\n\n" unless ( length($user_key) == 4 );
@@ -85,7 +85,13 @@ while (<$IN>){
 }
 close $IN;
 
-my $value_tsv = $value;
+my $value_tsv;
+if ($message && !$value){$value_tsv = $message; say "message: $message"}
+elsif ($value && !$message){$value_tsv = $value; say "value: $value"}
+elsif ($value && $message){ 
+  say "Please provide either -m or -v (these are synonymous; -m being reminiscent of git commit -m)"
+}
+
 $value_tsv =~ s/,*\s+/\t/g; # Replace spaces or comma+spaces with tabs
 my @parts = split(/\t/, $value_tsv);
 unless ($stdout){
@@ -179,3 +185,4 @@ VERSIONS
 2023-03-18 Change option -stdout to simply generate a key (no other message). Change from print to say.
 2023-03-27 Add genome_alignments as an allowed type.
 2024-04-12 Change usage message to include example for gene families collection
+2025-04-08 Add checks for presence of -m or -v flags
